@@ -96,6 +96,9 @@
 			thisProduct.priceElem = thisProduct.element.querySelector(
 				select.menuProduct.priceElem
 			);
+			thisProduct.imageWrapper = thisProduct.element.querySelector(
+				select.menuProduct.imageWrapper
+			);
 		}
 
 		initAccordion() {
@@ -147,41 +150,37 @@
 
 		processOrder() {
 			const thisProduct = this;
-			// covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
-			const formData = utils.serializeFormToObject(thisProduct.form);
-
-			// set price to default price
 			let price = thisProduct.data.price;
-
-			// for every category (param)...
 			for (let paramId in thisProduct.data.params) {
-				// determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
 				const param = thisProduct.data.params[paramId];
 
-				// for every option in this category
 				for (let optionId in param.options) {
-					// determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
 					const option = param.options[optionId];
+          const formData = utils.serializeFormToObject(thisProduct.form);
 					const optionSelected =
 						formData[paramId] && formData[paramId].includes(optionId);
+          const optionImage = thisProduct.imageWrapper.querySelector(
+            '.' + paramId + '-' + optionId
+          );
 
-					// check if the option is selected
+          if (optionImage) {
+            if (optionSelected) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible); 
+            } else {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
 					if (optionSelected) {
-						// check if the option is not default
 						if (!option.default) {
-							// add option price to price variable
 							price += option.price;
 						}
 					} else {
-						// check if the option is default
 						if (option.default) {
-							// reduce price variable
 							price -= option.price;
 						}
 					}
 				}
 
-				// update calculated price in the HTML
 				thisProduct.priceElem.innerHTML = price;
 			}
 		}
