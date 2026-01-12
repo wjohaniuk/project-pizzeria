@@ -1,3 +1,4 @@
+
 export const select = {
 	templateOf: {
 		menuProduct: '#template-menu-product',
@@ -90,3 +91,5 @@ export const templates = {
 	),
 	// CODE ADDED END
 };
+
+export default { select, classNames, settings, templates };

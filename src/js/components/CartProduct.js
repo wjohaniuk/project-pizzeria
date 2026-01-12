@@ -68,7 +68,7 @@ export class CartProduct {
 			event.preventDefault();
 		});
 	}
-	
+
 	getData() {
 		const thisCartProduct = this;
 		return {
@@ -81,3 +81,5 @@ export class CartProduct {
 		};
 	}
 }
+
+export default CartProduct;

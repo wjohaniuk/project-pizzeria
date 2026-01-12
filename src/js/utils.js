@@ -1,6 +1,4 @@
-import { Handlebars } from '../lib/handlebars.min.js';
-
-/* global Handlebars, dataSource */
+/* global Handlebars, dataSource */   // eslint-disable-line no-unused-vars
 
 export const utils = {}; // eslint-disable-line no-unused-vars
 
@@ -54,3 +52,5 @@ Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
 Handlebars.registerHelper('joinValues', function(input, options) {
   return Object.values(input).join(options.fn(this));
 });
+
+export default utils;
