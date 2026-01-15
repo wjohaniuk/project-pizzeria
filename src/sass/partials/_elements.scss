@@ -1,7 +1,26 @@
-/* Buttons */
-
 .btn-primary {
   @include btn($color-dark, $color-light, $color-dark);
+
+  &.to-top-btn {
+    display: none;
+    position: fixed;
+    bottom: $base-size * 4;
+    right: $base-size * 4;
+    font-size: $base-size * 2;
+    padding: calc($base-size / 2.5) $base-size;
+    box-shadow: calc($base-size / 6) calc($base-size / 6) calc($base-size / 4) lighten($color-dark, 10%);
+    z-index: 999;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      cursor: inherit;
+
+      span {
+        display: none;
+      }
+    }
+  }
 }
 
 .btn-secondary {
@@ -19,7 +38,7 @@
 
   &--lt {
     @include btn($color-light, $color-main, $color-light);
-    padding: 0;
+    padding: 0 !important;
     width: 24px;
     height: 18px;
     line-height: 16px;
@@ -28,18 +47,14 @@
   }
 }
 
-/* Form elements */
-
 input, select {
   border: 1px solid $color-dark;
   border-radius: $radius;
   padding: $base-size;
 
-  // CODE ADDED START
   &.error {
     border-color: $color-main;
   }
-  // CODE ADDED END
 }
 
 .checkbox {

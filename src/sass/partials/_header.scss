@@ -31,6 +31,18 @@
     font-size: ($base-size * 1.5);
     font-weight: $font-light;
     font-style: italic;
+
+    .flag-1 {
+      color: $color-success;
+    }
+
+    .flag-2 {
+      color: $color-light;
+    }
+
+    .flag-3 {
+      color: $color-danger;
+    }
   }
 
 }
@@ -57,4 +69,42 @@
 
   }
 
+}
+
+@media only screen and (max-width: 586px) {
+  .header {
+    padding: ($base-size * 6) 0 ($base-size * 8) 0;
+
+    &__wrapper {
+      text-align: center;
+
+      .logo {
+        transform: translateY(-75%);
+
+        &__subtitle {
+          display: none;
+        }
+      }
+
+      .main-nav {
+        width: 100%;
+        @include flex(row, center, space-evenly);
+      }
+    }
+  }
+}
+@media only screen and (max-width: 387px) {
+  .header {
+    a {
+      margin-right: $base-size;
+    }
+  }
+}
+@media only screen and (max-width: 365px) {
+  .header {
+    a {
+      padding: calc($base-size / 2) $base-size;
+      margin-right: 0;
+    }
+  }
 }

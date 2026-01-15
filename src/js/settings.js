@@ -3,17 +3,25 @@ export const select = {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product',
     bookingWidget: '#template-booking-widget',
+    homePage: '#template-home-page',
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
+    homePage: '.home-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
     menuProductsActive: '#product-list > .product.active',
     formInputs: 'input, select',
+  },
+  homePage: {
+    orderLink: '.box.order',
+    bookingLink: '.box.book',
+    openingHours: '#opening-hours',
+    mainCarousel: '.splide',
   },
   menuProduct: {
     clickable: '.product__header',
@@ -22,10 +30,13 @@ export const select = {
     imageWrapper: '.product__images',
     amountWidget: '.widget-amount',
     cartButton: '[href="#add-to-cart"]',
+    inputsRadio: 'input[type="radio"]',
+    inputsCheckbox: 'input[type="checkbox"]',
+    selectOptions: 'option',
   },
   widgets: {
     amount: {
-      input: 'input.amount', 
+      input: 'input.amount',
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
@@ -42,25 +53,29 @@ export const select = {
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
+    checkboxWater: 'input[value="water"]',
+    checkboxBread: 'input[value="bread"]',
+    floorPlan: '.floor-plan',
     tables: '.floor-plan .table',
+    phone: 'input[name="phone"]',
+    address: 'input[name="address"]',
+    formSubmit: 'button[type="submit"]',
   },
   nav: {
     links: '.main-nav a',
+    topButton: 'to-top-btn',
   },
-
- 
   cart: {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
-    totalNumber: `.cart__order-total .cart__order-price-sum strong`,
-    totalPrice:
-      '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
+    totalNumber: '.cart__total-number',
+    totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
     subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
     deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
     form: '.cart__order',
     formSubmit: '.cart__order [type="submit"]',
-    phone: '[name="phone"]',
-    address: '[name="address"]',
+    phone: '#phone',
+    address: '#address',
   },
   cartProduct: {
     amountWidget: '.widget-amount',
@@ -77,17 +92,21 @@ export const classNames = {
   },
   cart: {
     wrapperActive: 'active',
+    inputInvalid: 'error',
+    inputValid: 'valid',
   },
   booking: {
     loading: 'loading',
+    table: 'table',
     tableBooked: 'booked',
+    tableSelected: 'selected',
   },
   nav: {
     active: 'active',
   },
   pages: {
     active: 'active',
-  },
+  }
 };
 
 export const settings = {
@@ -95,12 +114,25 @@ export const settings = {
     defaultValue: 1,
     defaultMin: 1,
     defaultMax: 9,
-  }, 
+  },
   cart: {
     defaultDeliveryFee: 20,
+    phoneMinLenght: 9,
+  },
+  hours: {
+    open: 12,
+    close: 24,
+    weekStart: 'TUE',
+    weekEnd: 'SUN',
+  },
+  datePicker: {
+    maxDaysInFuture: 14,
+  },
+  booking: {
+    tableIdAttribute: 'data-table',
   },
   db: {
-    url: 'http://localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     products: 'products',
     orders: 'orders',
     bookings: 'bookings',
@@ -110,28 +142,19 @@ export const settings = {
     notRepeatParam: 'repeat=false',
     repeatParam: 'repeat_ne=false',
   },
-  hours: {
-    open: 12,
-    close: 24,
-  },
-  datePicker: {
-    maxDaysInFuture: 14,
-  },
-  booking: {
-    tableIdAttribute: 'data-table',
-  },
 };
 
 export const templates = {
+  homePage: Handlebars.compile(
+    document.querySelector(select.templateOf.homePage).innerHTML
+  ),
   menuProduct: Handlebars.compile(
     document.querySelector(select.templateOf.menuProduct).innerHTML
-  ),
-  bookingWidget: Handlebars.compile(
-    document.querySelector(select.templateOf.bookingWidget).innerHTML
   ),
   cartProduct: Handlebars.compile(
     document.querySelector(select.templateOf.cartProduct).innerHTML
   ),
+  bookingWidget: Handlebars.compile(
+    document.querySelector(select.templateOf.bookingWidget).innerHTML
+  ),
 };
-
-export default { select, classNames, settings, templates };

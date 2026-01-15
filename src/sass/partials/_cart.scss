@@ -1,9 +1,9 @@
 .cart {
   position: absolute;
-  width: 300px; // CODE CHANGED
+  width: 300px;
   right: 0;
   top: $base-size;
-  padding: ($base-size) ($base-size * 1.5);
+  padding: $base-size ($base-size * 1.5);
   background: $color-light;
   border-radius: $radius;
   color: $color-main;
@@ -73,23 +73,23 @@
 
   }
 
-  &__product { // CODE CHANGED
-    width: 170px; // CODE CHANGED
+  &__product {
+    width: 170px;
   }
-
-  // CODE ADDED START
 
   &__product-header {
     @include flex(row, center, space-between);
+    text-align: start;
   }
 
   &__product-details {
     li {
       display: block;
-      margin: 0 0 ($base-size / 4) 0;
+      margin: 0 0 calc($base-size / 4) 0;
       font-size: 10px;
       color: lighten($color-dark, 40%);
       text-transform: lowercase;
+      text-align: start;
       font-style: italic;
       line-height: 1.3;
       letter-spacing: 0.5px;
@@ -99,7 +99,7 @@
 
   &__product-details-label {
     position: relative;
-    padding: 0 ($base-size / 2) 0 0;
+    padding: 0 calc($base-size / 2) 0 0;
     font-weight: 700;
 
     &::after {
@@ -108,8 +108,6 @@
     }
 
   }
-
-  // CODE ADDED END
 
   &__action-buttons {
     @include flex(row, center, space-between);
@@ -135,7 +133,7 @@
   }
 
   &__order-price {
-    margin: $base-size 0 0 0; // CODE CHANGED
+    margin: $base-size 0 0 0;
     padding: $base-size 0;
     list-style-type: none;
     border-top: 1px solid lighten($color-dark, 70%);
@@ -151,9 +149,29 @@
 
     input, button {
       width: 100%;
-      margin-bottom: ($base-size / 2);
+      margin-bottom: calc($base-size / 2);
+      transition: $transition;
     }
 
-  }
+    .error {
+      border: calc($base-size / 3) solid $color-danger;
+      border-radius: $radius;
+      transition: $transition;
+    }
 
+    .valid {
+      border: calc($base-size / 3) solid $color-success;
+      border-radius: $radius;
+      transition: $transition;
+    }
+  }
+}
+
+@media only screen and (max-width: 586px) {
+  .cart {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+  }
 }
